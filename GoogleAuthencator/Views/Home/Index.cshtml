@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Getting started</h2>
+
+
+
+        <div class="form-group">
+            <label>2FA QR Code</label>
+            Scan your phone with Google Authencator App <br />
+            <img id="imgQrCode" src="@ViewBag.QrCodeImageUrl" /><br />
+            <br />
+            <strong>Manual Setup Code: </strong> <br />
+            <span id="lblManualSetupCode">@ViewBag.ManualEntrySetupCode</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h2>Testing</h2>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label for="txtYourCode">Your Code:</label>
+                <input type="text" class="form-control" placeholder="Your Code" id="txtYourCode" name="txtYourCode" required>
+            </div>
+
+            if (TempData["Authen"] != null)
+            {
+                @Html.Raw(TempData["Authen"])
+            }
+            <button type="submit" class="btn btn-default">Submit</button>
+        }
+    </div>
+
+</div>
